@@ -92,3 +92,17 @@
   flex-direction: column;
   row-gap: 1rem;
 }
+
+@media (max-width: 900px) {
+  .question {
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+}

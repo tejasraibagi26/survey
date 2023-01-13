@@ -14,7 +14,8 @@ const Question = ({
           label={`Question ${index + 1}`}
           placeholder="Enter Question"
           type="text"
-          className="create__input"
+          defaultValue={questions.question}
+          className="create__input question__input"
           onChange={onChangeQuestion}
           name={"question"}
         />
@@ -33,6 +34,7 @@ const Question = ({
           placeholder="Select Answer Type"
           className="create__input"
           onChange={onChangeQuestion}
+          defaultValue={questions?.type}
           options={["Single Choice", "Multiple Choice", "Text", "True / False"]}
         />
 
@@ -43,36 +45,40 @@ const Question = ({
               <Text
                 label="Opt 1"
                 name="option1"
+                defaultValue={questions?.options?.option1}
                 placeholder="Enter Option 1"
                 type="text"
-                className="create__input"
+                className="create__input question__input"
                 labelClassName="small"
                 onChange={onChangeQuestion}
               />
               <Text
                 label="Opt 2"
                 name="option2"
+                defaultValue={questions?.options?.option2}
                 placeholder="Enter Option 2"
                 type="text"
-                className="create__input"
+                className="create__input question__input"
                 labelClassName="small"
                 onChange={onChangeQuestion}
               />
               <Text
                 label="Opt 3"
                 name="option3"
+                defaultValue={questions?.options?.option3}
                 placeholder="Enter Option 3"
                 type="text"
-                className="create__input"
+                className="create__input question__input"
                 labelClassName="small"
                 onChange={onChangeQuestion}
               />
               <Text
                 label="Opt 4"
                 name="option4"
+                defaultValue={questions?.options?.option4}
                 placeholder="Enter Option 4"
                 type="text"
-                className="create__input"
+                className="create__input question__input"
                 labelClassName="small"
                 onChange={onChangeQuestion}
               />
@@ -90,6 +96,7 @@ const Question = ({
           className="create__input"
           onChange={onChangeQuestion}
           options={["Yes", "No"]}
+          defaultValue={questions?.required ? "Yes" : "No"}
         />
       </div>
       <div

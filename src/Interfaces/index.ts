@@ -9,6 +9,7 @@ export interface TextField {
   labelClassName?: string;
   onChange: ChangeEventHandler;
   error?: boolean;
+  defaultValue?: string;
 }
 
 export interface IDropdown {
@@ -20,6 +21,7 @@ export interface IDropdown {
   error?: boolean;
   options: string[];
   name: string;
+  defaultValue?: string;
 }
 
 export interface IButton {

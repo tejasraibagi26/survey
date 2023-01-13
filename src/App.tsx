@@ -8,7 +8,7 @@ import DashboardPage from "./Pages/Dashboard";
 import LandingPage from "./Pages/LandingPage";
 
 function App() {
-  const [auth, setAuth] = useState<Boolean>(true);
+  const [auth, setAuth] = useState<Boolean>(false);
 
   return (
     <Router>

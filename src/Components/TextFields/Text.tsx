@@ -12,6 +12,7 @@ const Text = ({
   labelClassName,
   onChange,
   error,
+  defaultValue,
 }: TextField) => {
   const [isObscured, setIsObscured] = useState<Boolean>(false);
   const [inputType, setInputType] = useState<any>(type ? type : "text");
@@ -32,6 +33,7 @@ const Text = ({
       <input
         name={name}
         type={inputType}
+        value={defaultValue}
         max={inputType === "number" ? 10 : undefined}
         placeholder={placeholder}
         className={className}

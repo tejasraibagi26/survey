@@ -61,3 +61,16 @@ select:focus {
 .error {
   border: 1.5px solid red;
 }
+
+@media (max-width: 900px) {
+  label,
+  input,
+  textarea,
+  select {
+    font-size: 1rem;
+  }
+
+  .btn {
+    width: 100% !important;
+  }
+}

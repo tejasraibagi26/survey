@@ -1,10 +1,11 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { isEmpty } from "../../Helpers";
 import { IUser } from "../../Interfaces";
 import Button from "../Button";
 import { Text } from "../TextFields";
 import "./auth.css";
-
+const BASE_URL = "http://localhost:3000/api";
 const Auth = (props: any) => {
   const isRegister = props?.authType === "register" ? true : false;
 
@@ -46,8 +47,20 @@ const renderRegister = () => {
   const registerUser = () => {
     setLoading(true);
     try {
-      console.log("uvals:", userValues);
       isEmpty(userValues);
+      axios
+        .post(`${BASE_URL}/user/register`, {
+          email: userValues.email,
+          username: userValues.username,
+          password: userValues.password,
+          confirmPassword: userValues.confirmPassword,
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (error: any) {
       error.errors.forEach((err: any) => {
         setErrors((prev: any) => ({

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { IQuestion, ISurvey } from "../../Interfaces";
 import { Question, SurveyInformation } from "../Survey";
-
 import "./create.css";
+import axios from "axios";
+const BASE_URL = "http://localhost:3000/api";
+
 const Create = () => {
   const [survey, setSurvey] = useState<ISurvey>({
     title: "",
@@ -14,7 +16,12 @@ const Create = () => {
   const [questions, setQuestions] = useState<IQuestion>({
     question: "",
     type: "Single Choice",
-    options: [],
+    options: {
+      option1: "",
+      option2: "",
+      option3: "",
+      option4: "",
+    },
     required: true,
   });
 
@@ -56,7 +63,6 @@ const Create = () => {
   };
 
   const onDummyClick = (e: React.ChangeEvent<HTMLElement>) => {
-    console.log(survey);
     const fadeDiv = document.querySelector(".survey__fade");
     fadeDiv?.classList.add("fade-out");
 
@@ -71,34 +77,37 @@ const Create = () => {
   };
 
   const onSaveNext = () => {
-    console.log(questions);
-    console.log("Saving...");
-    const allInputs = document.querySelectorAll(".create__input");
-    allInputs.forEach((inp) => {
-      inp.textContent = "";
-    });
-
     setSurvey((prev) => ({
       ...prev,
       questions: [...prev.questions, questions],
     }));
-    console.log("Save complete...");
-    console.log("Resetting question state...");
+
     setQuestions({
       question: "",
       type: "Single Choice",
-      options: [],
+      options: {
+        option1: "",
+        option2: "",
+        option3: "",
+        option4: "",
+      },
       required: true,
     });
-    console.log(currentQuestionIndex, survey.questionLength);
     if (currentQuestionIndex === survey.questionLength - 1) {
-      // Submit
-      console.log("Submitting...");
-      console.log(survey);
+      submit();
       return;
     }
-
     setCurrentQuestionIndex((prev) => prev + 1);
+  };
+
+  const submit = () => {
+    console.log(survey);
+    axios
+      .post(`${BASE_URL}/survey/add`, {
+        survey,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
